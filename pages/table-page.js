@@ -8,29 +8,31 @@ import { useState, useEffect } from 'react'
 const Home = () => {
     const [rowdata, setRowData] = useState([])
 
-      const onAddRowClick = () => {
+      const onAddRowClick = () => { //this function modifies the state of rowdata usinf setRowData
     setRowData(
-      rowdata.concat({ username: "", email: "", gender: "", phone: "" })
+      rowdata.concat({ college: "", location: "", psychology_program: "", social_life: "" })
     )
   }
     const columns = [
         {
-          Header: "Name",
-          accessor: "username",
+          Header: "College",
+          accessor: "college",
         },
         {
-          Header: "Email",
-          accessor: "email",
+          Header: "Location",
+          accessor: "location",
         },
         {
-          Header: "Gender",
-          accessor: "gender",
+          Header: "Psychology Program",
+          accessor: "psychology_program",
         },
         {
-          Header: "Phone",
-          accessor: "phone",
+          Header: "social-life",
+          accessor: "social_life",
         },
       ]
+    
+
 
   return (
     <><div className={styles.container}>
@@ -43,7 +45,7 @@ const Home = () => {
               <h1>Uni-research-table</h1>
               <div className="container mx-auto">
                   <button
-                      onClick={onAddRowClick}
+                      onClick={onAddRowClick} //button click call the onAddRowClick function
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                   >
                       Add Row
