@@ -2,7 +2,7 @@ import { useTable } from 'react-table'
 // import styles from '../styles/Table.module.css'
 
 
-function Table({columns, data}){
+function Table({columns, data, updateMyData}){
 
     const {
         getTableProps,
@@ -14,6 +14,7 @@ function Table({columns, data}){
       } = useTable({
         columns,
         data,
+        updateMyData,
       })
 
 
