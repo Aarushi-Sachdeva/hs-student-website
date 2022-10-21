@@ -58,28 +58,45 @@ const Home = () => {
     }
     */
   }
-  const columns = [
-    {
-      Header: "College",
-      accessor: "college",
-      Cell: EditableCell,
-    },
-    {
-      Header: "Location",
-      accessor: "location",
-      Cell: EditableCell,
-    },
-    {
-      Header: "Psychology Program",
-      accessor: "psychology_program",
-      Cell: EditableCell,
-    },
-    {
-      Header: "social-life",
-      accessor: "social_life",
-      Cell: EditableCell,
-    },
-  ]
+
+  //this function converts the words that the user typed into the box in the landing page to the columns used for the table
+  const createColumns = (columnHeaders,) => {
+    const columns = []
+
+    for (i = 0; i < columnHeaders.length; i++) {
+      columns.push({
+        Header: columnHeaders[i],
+        accessor: columnHeaders[i].toLowerCase(),
+        Cell: EditableCell
+      })
+    }
+
+    return columns
+  }
+
+  const columns = createColumns() //we need to pass the words that the user types into the box in the landing page to this function
+  // const columns = [
+  //   {
+  //     Header: "College",
+  //     accessor: "college",
+  //     Cell: EditableCell,
+  //   },
+  //   {
+  //     Header: "Location",
+  //     accessor: "location",
+  //     Cell: EditableCell,
+  //   },
+  //   {
+  //     Header: "Psychology Program",
+  //     accessor: "psychology_program",
+  //     Cell: EditableCell,
+  //   },
+  //   {
+  //     Header: "social-life",
+  //     accessor: "social_life",
+  //     Cell: EditableCell,
+  //   },
+  // ]
 
   const updateMyData = (rowIndex, columnId, value) => {
     // We also turn on the flag to not reset the page

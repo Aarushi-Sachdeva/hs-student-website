@@ -3,17 +3,29 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import React from 'react'
+
+
+
+
 
 export default function Home() {
+
+
   const [textValue, setTextValue] = useState("")
-  function handleChange (e) { //onChange event
+  function handleChange(e) { //onChange event
     setTextValue(e.target.value) // extract the value from the target that triggered an event
   }
-  const [lstOfWords, setLstOfWords] = useState()
+
+  //need to find a way to export columnHeaders so that it can be imported in table-page.js and passed as an
+  // argument to the createColumns function
+  const [columnHeaders, setcolumnHeaders] = useState()
   useEffect(() => {
     const splitted = textValue.split(',')
-    setLstOfWords(splitted)
+    setcolumnHeaders(splitted)
   }, [textValue])
+  //idea: use the Context idea to export these variables https://dev.to/nazmifeeroz/using-usecontext-and-usestate-hooks-as-a-store-mnm
+
 
   return (
     <div className={styles.container}>
@@ -27,20 +39,21 @@ export default function Home() {
         <h1 className={styles.title}>
           Enter words that describe your future life:
         </h1>
-        <input className={styles.input} type= "text" size= {100} onChange= {handleChange} placeholder='criteria for your future'  ></input>
+        <input className={styles.input} type="text" size={100} onChange={handleChange} placeholder='criteria for your future'  ></input>
 
 
-        <Link href= "table-page">
-            <a><button>Done</button></a>
+        //add an onClick event here maybe???
+        <Link href="table-page">
+          <a><button>Done</button></a>
         </Link>
 
-        
-        <ul>{lstOfWords?.map((value,index)=>{
+
+        {/* <ul>{lstOfWords?.map((value,index)=>{
             if (value === ""){
               return
             }
             return <li key={index}>{value}</li>
-        })}</ul>
+        })}</ul> */}
       </main>
 
       <footer className={styles.footer}>
