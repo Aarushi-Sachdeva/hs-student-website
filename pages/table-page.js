@@ -5,6 +5,7 @@ import Table from '../components/Table'
 import EditableCell from '../components/EditableCell'
 import { useState, useEffect } from 'react'
 import makeData from '../functions/makeData.js'
+import { useColumns } from '../components/context/global'
 
 
 /*
@@ -15,6 +16,7 @@ second parm is a list of components?! that you are tracking the changes in
 */
 
 const Home = () => {
+  const { columnHeaders, setcolumnHeaders } = useColumns()
 
   const [isSSR, setSSR] = useState(true) //isSSR is keeping track of whether we are Server Side Rendering or not
 
@@ -44,26 +46,12 @@ const Home = () => {
   }
     , [rowdata])
 
-  const onAddRowClick = () => { //this function creates a new rowObject everytime somone clicks on the button!
-    setRowData(
-      rowdata.concat({ college: "", location: "", psychology_program: "", social_life: "" })
-    )
-    /*
-    row object looks like the following:
-    {
-      college: "",
-      location: "",
-      psychology_program: "",
-      social_life: ""
-    }
-    */
-  }
 
   //this function converts the words that the user typed into the box in the landing page to the columns used for the table
-  const createColumns = (columnHeaders,) => {
+  const createColumns = () => {
     const columns = []
 
-    for (i = 0; i < columnHeaders.length; i++) {
+    for (let i = 0; i < columnHeaders.length; i++) {
       columns.push({
         Header: columnHeaders[i],
         accessor: columnHeaders[i].toLowerCase(),
@@ -97,6 +85,25 @@ const Home = () => {
   //     Cell: EditableCell,
   //   },
   // ]
+
+  const onAddRowClick = (columns) => { //this function creates a new rowObject everytime somone clicks on the button!
+    let rowObject = {}
+    for (let i = 0; i < columns.length; i++) {
+      rowObject.columns[i].accessor = ""
+    }
+    setRowData(
+      rowdata.concat(rowObject)
+    )
+    /*
+    row object looks like the following:
+    {
+      college: "",
+      location: "",
+      psychology_program: "",
+      social_life: ""
+    }
+    */
+  }
 
   const updateMyData = (rowIndex, columnId, value) => {
     // We also turn on the flag to not reset the page
