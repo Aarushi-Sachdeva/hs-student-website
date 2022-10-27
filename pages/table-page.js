@@ -39,25 +39,24 @@ const Home = () => {
     return [] //return empty list from server side
   })
 
-  //this useEffect is listening to changes in rowdata, everytime a change is made to rowdata the updates are saved
-  //under the "table" key in the localStorage (this is in the client), update the contents of rowdata
-  useEffect(() => {
-    localStorage.setItem("table", JSON.stringify(rowdata))
-  }
-    , [rowdata])
+
 
 
   //this function converts the words that the user typed into the box in the landing page to the columns used for the table
   const createColumns = () => {
-    const columns = []
+    const [columns, setColumns] = useState([])
 
-    for (let i = 0; i < columnHeaders.length; i++) {
-      columns.push({
-        Header: columnHeaders[i],
-        accessor: columnHeaders[i].toLowerCase(),
-        Cell: EditableCell
-      })
-    }
+    useEffect(() => {
+      let c = []
+      for (let i = 0; i < columnHeaders.length; i++) {
+        c.push({
+          Header: columnHeaders[i],
+          accessor: columnHeaders[i].toLowerCase(),
+          Cell: EditableCell
+        })
+      }
+      setColumns(c)
+    }, [columnHeaders])
 
     return columns
   }
@@ -87,13 +86,18 @@ const Home = () => {
   // ]
 
   const onAddRowClick = (columns) => { //this function creates a new rowObject everytime somone clicks on the button!
+
+    console.log("columns is", columns)
     let rowObject = {}
     for (let i = 0; i < columns.length; i++) {
-      rowObject.columns[i].accessor = ""
+      rowObject[columns[i].accessor] = ""
     }
+
     setRowData(
       rowdata.concat(rowObject)
     )
+    console.log(rowdata)
+    localStorage.setItem("table", JSON.stringify(rowdata))
     /*
     row object looks like the following:
     {
@@ -104,6 +108,21 @@ const Home = () => {
     }
     */
   }
+
+  //FIX THIS, NEED to add a default row on first render
+  useEffect(
+    () => {
+      onAddRowClick(columns)
+    }, []
+  )
+
+  //this useEffect is listening to changes in rowdata, everytime a change is made to rowdata the updates are saved
+  //under the "table" key in the localStorage (this is in the client), update the contents of rowdata
+  useEffect(() => {
+    localStorage.setItem("table", JSON.stringify(rowdata))
+  }
+    , [rowdata])
+
 
   const updateMyData = (rowIndex, columnId, value) => {
     // We also turn on the flag to not reset the page
@@ -134,7 +153,7 @@ const Home = () => {
         <h1>Uni-research-table</h1>
         <div className="container mx-auto">
           <button
-            onClick={onAddRowClick} //button click call the onAddRowClick function
+            onClick={() => onAddRowClick(columns)} //button click call the onAddRowClick function
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
             Add Row

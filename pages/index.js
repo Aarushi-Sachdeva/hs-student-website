@@ -6,6 +6,7 @@ import Link from 'next/link'
 import React from 'react'
 import { useColumns } from '../components/context/global'
 import { useRouter } from 'next/router'
+import VisitedLP from '../components/visitedLP'
 
 
 
@@ -14,7 +15,19 @@ export default function Home() {
 
   const router = useRouter()
 
-  const [textValue, setTextValue] = useState("")
+  const [isSSR, setSSR] = useState(true) //isSSR is keeping track of whether we are Server Side Rendering or not
+
+  useEffect(() => {
+    // set to false, essentially telling it we are in the client
+    //the empty [] tells means that as soon as the client is open set isSSR to false
+    setSSR(false)
+    const storageColumns = localStorage.getItem("columns")
+    if (storageColumns != null && storageColumns != "[]") {
+      router.push("/table-page")
+    }
+  }, [])
+
+  const [textValue, setTextValue] = useState()
   function handleChange(e) { //onChange event
     setTextValue(e.target.value) // extract the value from the target that triggered an event
   }
@@ -25,10 +38,21 @@ export default function Home() {
 
 
   useEffect(() => {
-    const splitted = textValue.split(',')
-    setcolumnHeaders(splitted)
+    if (textValue != null) {
+      const splitted = textValue.split(',')
+      setcolumnHeaders(splitted)
+    }
   }, [textValue])
   //idea: use the Context idea to export these variables https://dev.to/nazmifeeroz/using-usecontext-and-usestate-hooks-as-a-store-mnm
+
+  useEffect(() => {
+    if (columnHeaders.length)
+      localStorage.setItem("columns", JSON.stringify(columnHeaders))
+
+  }
+    , [columnHeaders])
+
+
 
   return (
     < div className={styles.container} >
@@ -50,11 +74,11 @@ export default function Home() {
         {/*add an onClick event here maybe???*/}
 
         {/* <ul>{lstOfWords?.map((value,index)=>{
-            if (value === ""){
-              return
-            }
-            return <li key={index}>{value}</li>
-        })}</ul> */}
+                  if (value === ""){
+                    return
+                  }
+                  return <li key={index}>{value}</li>
+              })}</ul> */}
       </main>
 
       <footer className={styles.footer}>
@@ -72,3 +96,6 @@ export default function Home() {
     </div >
   )
 }
+
+
+
