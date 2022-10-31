@@ -8,12 +8,19 @@ export const Layout = ({ children }) => {
             (typeof localStorage !== "undefined") {
             // get the version of the table before refresh (oldState) from the client's local storage
             //if there is there is an oldState parse it and return, else return an empty list
-            const oldState = localStorage.getItem("table")
-            console.log(oldState)
-            if (oldState != null && oldState != "[]") {
-                const columns = Object.keys(JSON.parse(oldState)[0])
+            //const tableOldState = localStorage.getItem("table")
+            const columnsOldState = localStorage.getItem("columns")
+            // console.log("columnsOldState", columnsOldState)
+            // console.log("tableOldState", tableOldState)
+            if (columnsOldState != null && columnsOldState != "[]") {
+                const columns = (JSON.parse(columnsOldState))
                 return columns
             }
+            // else if (columnsOldState != [] && columnsOldState != null && tableOldState.len == 0) {
+            //     console.log("columnsOldState", columnsOldState)
+            //     const columns = (JSON.parse(columnsOldState))
+            //     return columns
+            // }
             else {
                 return []
             }

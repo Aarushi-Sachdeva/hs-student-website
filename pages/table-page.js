@@ -58,6 +58,8 @@ const Home = () => {
       setColumns(c)
     }, [columnHeaders])
 
+    console.log("issue", columns.length)
+
     return columns
   }
 
@@ -110,15 +112,11 @@ const Home = () => {
   }
 
   //FIX THIS, NEED to add a default row on first render
-  useEffect(
-    () => {
-      onAddRowClick(columns)
-    }, []
-  )
 
   //this useEffect is listening to changes in rowdata, everytime a change is made to rowdata the updates are saved
   //under the "table" key in the localStorage (this is in the client), update the contents of rowdata
   useEffect(() => {
+    console.log(rowdata)
     localStorage.setItem("table", JSON.stringify(rowdata))
   }
     , [rowdata])
@@ -139,6 +137,15 @@ const Home = () => {
       })
     )
   }
+
+  // useEffect(
+  //   () => {
+  //     onAddRowClick(columns)
+  //     for (let i = 0; i < columns.length; i++) {
+  //       updateMyData(i, columns[i].acessor, " ")
+  //       // }
+  //     }
+  //   }, [])
 
 
 
