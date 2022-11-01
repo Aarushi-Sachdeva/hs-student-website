@@ -58,7 +58,7 @@ const Home = () => {
       setColumns(c)
     }, [columnHeaders])
 
-    console.log("issue", columns.length)
+
 
     return columns
   }

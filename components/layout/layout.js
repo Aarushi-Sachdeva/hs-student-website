@@ -12,17 +12,12 @@ export const Layout = ({ children }) => {
             const columnsOldState = localStorage.getItem("columns")
             // console.log("columnsOldState", columnsOldState)
             // console.log("tableOldState", tableOldState)
-            if (columnsOldState != null && columnsOldState != "[]") {
+            if (columnsOldState != null && columnsOldState.length != []) {
                 const columns = (JSON.parse(columnsOldState))
                 return columns
             }
-            // else if (columnsOldState != [] && columnsOldState != null && tableOldState.len == 0) {
-            //     console.log("columnsOldState", columnsOldState)
-            //     const columns = (JSON.parse(columnsOldState))
-            //     return columns
-            // }
             else {
-                return []
+                return ["College Name"] //defualt state of columnHeaders = ["College Name"]
             }
         }
         return [] //return empty list from server side

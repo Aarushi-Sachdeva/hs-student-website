@@ -22,7 +22,11 @@ export default function Home() {
     //the empty [] tells means that as soon as the client is open set isSSR to false
     setSSR(false)
     const storageColumns = localStorage.getItem("columns")
-    if (storageColumns != null && storageColumns != "[]") {
+    if (storageColumns != null) {
+      console.log("storageColumns.length=", storageColumns.length)
+    }
+    if (storageColumns != null && storageColumns.length > 16) { //16 is a oddly specific num don't knwo where it is coming from
+      console.log("hello")
       router.push("/table-page")
     }
   }, [])
@@ -37,12 +41,13 @@ export default function Home() {
   const { columnHeaders, setcolumnHeaders } = useColumns()
 
 
-  useEffect(() => {
-    if (textValue != null) {
-      const splitted = textValue.split(',')
-      setcolumnHeaders(splitted)
-    }
-  }, [textValue])
+
+  // useEffect(() => {
+  //   if (textValue != null) {
+  //     const splitted = textValue.split(',')
+  //     setcolumnHeaders(splitted)
+  //   }
+  // }, [textValue])
   //idea: use the Context idea to export these variables https://dev.to/nazmifeeroz/using-usecontext-and-usestate-hooks-as-a-store-mnm
 
   useEffect(() => {
@@ -52,6 +57,17 @@ export default function Home() {
   }
     , [columnHeaders])
 
+  const reroute = () => { textValue ? router.push("/table-page") : null }
+
+
+  //when the "Done" button is clicked split textValue and merge splitted to the current state of ColumnHeaders
+  //then reroute
+  const handleClick = () => {
+    const splitted = textValue.split(',')
+    setcolumnHeaders([...columnHeaders, ...splitted])//this is how you merge an array with your current array state using set...
+    reroute()
+
+  }
 
 
   return (
@@ -69,7 +85,7 @@ export default function Home() {
         <form>
           <input className={styles.input} type="text" size={100} onChange={handleChange} placeholder='criteria for your future' required></input>
 
-          <button type="button" onClick={() => textValue ? router.push("/table-page") : null}>Done</button>
+          <button type="button" onClick={handleClick}>Done</button>
         </form>
         {/*add an onClick event here maybe???*/}
 
