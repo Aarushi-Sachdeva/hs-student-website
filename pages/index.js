@@ -69,6 +69,17 @@ export default function Home() {
 
   }
 
+  function handleKeyDown(e) {
+    console.log('User pressed: ', e.key)
+    if (e.key === 'Enter') {
+      handleClick()
+    }
+  }
+
+  useEffect({
+    document.addEventListener('keydown', detectEnter, true)
+  }, []
+  )
 
   return (
     < div className={styles.container} >
@@ -82,10 +93,10 @@ export default function Home() {
         <h1 className={styles.title}>
           Enter words that describe your future life:
         </h1>
-        <form>
+        <form ref={ref}>
           <input className={styles.input} type="text" size={100} onChange={handleChange} placeholder='criteria for your future' required></input>
 
-          <button type="button" onClick={handleClick}>Done</button>
+          <button type="button" onClick={handleClick} onKeyDown={(e) => handleKeyDown(e)}>Done</button>
         </form>
         {/*add an onClick event here maybe???*/}
 
