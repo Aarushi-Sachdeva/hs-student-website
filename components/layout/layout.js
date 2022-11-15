@@ -17,7 +17,7 @@ export const Layout = ({ children }) => {
                 return columns
             }
             else {
-                return ["College Name"] //defualt state of columnHeaders = ["College Name"]
+                return ["College Name", "Difficulty", "Location", "Courses of Interest"] //defualt state of columnHeaders = ["College Name"]
             }
         }
         return [] //return empty list from server side

@@ -2,6 +2,11 @@
   padding: 0 2rem;
 }
 
+.container1 {
+  display: flex;
+  flex-direction: column;
+}
+
 .main {
   min-height: 100vh;
   padding: 4rem 0;
@@ -31,6 +36,7 @@
 .title a {
   color: #0070f3;
   text-decoration: none;
+  font-family: 'font-sans';
 }
 
 .title a:hover,
@@ -43,6 +49,8 @@
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
+  font-family: 'ui-monospace';
+  color: #302964;
 }
 
 .title,
@@ -117,13 +125,16 @@
 }
 
 @media (prefers-color-scheme: dark) {
+
   .card,
   .footer {
     border-color: #222;
   }
+
   .code {
     background: #111;
   }
+
   .logo img {
     filter: invert(1);
   }
