@@ -26,7 +26,7 @@ export default function Home() {
         if (storageColumns != null && storageColumns.length > 62) { //16 is a oddly specific num don't knwo where it is coming from
             router.push("/table-page")
         }
-    }, [])
+    }, [router])
 
     const [textValue, setTextValue] = useState()
     function handleChange(e) { //onChange event

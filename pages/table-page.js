@@ -17,6 +17,7 @@ second parm is a list of components?! that you are tracking the changes in
 
 const Home = () => {
   const { columnHeaders, setcolumnHeaders } = useColumns()
+  const [columns, setColumns] = useState([])
 
   const [isSSR, setSSR] = useState(true) //isSSR is keeping track of whether we are Server Side Rendering or not
 
@@ -41,29 +42,28 @@ const Home = () => {
 
 
 
-
   //this function converts the words that the user typed into the box in the landing page to the columns used for the table
-  const createColumns = () => {
-    const [columns, setColumns] = useState([])
-
-    useEffect(() => {
-      let c = []
-      for (let i = 0; i < columnHeaders.length; i++) {
-        c.push({
-          Header: columnHeaders[i],
-          accessor: columnHeaders[i].toLowerCase(),
-          Cell: EditableCell
-        })
-      }
-      setColumns(c)
-    }, [columnHeaders])
+  //const createColumns = () => {
 
 
+  useEffect(() => {
+    let c = []
+    for (let i = 0; i < columnHeaders.length; i++) {
+      c.push({
+        Header: columnHeaders[i],
+        accessor: columnHeaders[i].toLowerCase(),
+        Cell: EditableCell
+      })
+    }
+    setColumns(c)
+  }, [columnHeaders])
 
-    return columns
-  }
 
-  const columns = createColumns() //we need to pass the words that the user types into the box in the landing page to this function
+
+  //   return columns
+  // }
+
+  //const columns = createColumns() //we need to pass the words that the user types into the box in the landing page to this function
   // const columns = [
   //   {
   //     Header: "College",
