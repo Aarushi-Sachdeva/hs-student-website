@@ -1,3 +1,4 @@
+Link to Deployed Website: https://findtherightuniversity.netlify.app/
 The college application process is crazy! There is an overload of information and so many people to communicate your wants and needs with. After watching my sister go through this process recently, I was inspired to create a website that can help seniors come up with a criteria for what they want out of their college experience. This criteria then becomes a guide for their research, and helps them organise their thoughts in a tabular form that is easy to read and even share with their college counceler and parents.
 
 This is a Next.js application.
