@@ -43,8 +43,13 @@ const Home = () => {
                     <div className='display: flex flex- items-center'>
                         <div>
                             <h1 className='text-primary-font font-family:Outfit font-style: font-semibold text-indigo-900 capitalize text-8xl'>
-                                Does the size of the college matter?
+                                What size of school are you looking for?
                             </h1>
+                            <br></br>
+                            <h3 className='text-primary-font opacity-50 font-family:Outfit font-style: font-semibold text-indigo-900 capitalize text-2xl'>
+                                Small (&lt; 5000), Medium (&gt; 5000 , &lt; 15000), Big (&gt; 15,000)
+                            </h3>
+
                         </div>
                         <div>
                             <form>
