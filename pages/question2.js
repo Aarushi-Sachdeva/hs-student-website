@@ -43,7 +43,7 @@ const Home = () => {
                     <div className='display: flex flex- items-center'>
                         <div>
                             <h1 className='text-primary-font font-family:Outfit font-style: font-semibold text-indigo-900 capitalize text-8xl'>
-                                What do I want from my college experience?
+                                What type of extra curricular activities are you interested in?
                             </h1>
                         </div>
                         <div>
