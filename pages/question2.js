@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 const Home = () => {
     const [textValue, setTextValue] = useState()
     function handleChange(e) { //onChange event
-        setTextValue(e.target.value) // extract the value from the target that triggered an event
+        setTextValue([e.target.value]) // extract the value from the target that triggered an event
     }
     const router = useRouter()
     const reroute = () => { textValue ? router.push("/question3") : null }
@@ -17,6 +17,9 @@ const Home = () => {
     //then reroute
     const handleClick = () => {
         if (textValue) {
+            console.log("answer2,", textValue)
+            const answer2 = [textValue]
+            localStorage.setItem("answers", [...localStorage.getItem("answers"), ...JSON.stringify(answer2)])
             //this is how you merge an array with your current array state using set...
             reroute()
         }

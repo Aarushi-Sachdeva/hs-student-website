@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 const Home = () => {
     const [textValue, setTextValue] = useState()
     function handleChange(e) { //onChange event
-        setTextValue(e.target.value) // extract the value from the target that triggered an event
+        setTextValue([e.target.value]) // extract the value from the target that triggered an event
     }
     const router = useRouter()
     const reroute = () => { textValue ? router.push("/define-criteria") : null }
