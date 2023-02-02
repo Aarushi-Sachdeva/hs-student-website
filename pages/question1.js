@@ -14,7 +14,7 @@ const Home = () => {
         setTextValue(e.target.value) // extract the value from the target that triggered an event
     }
     const router = useRouter()
-    const reroute = () => { counter == questions.length ? router.push("/define-criteria") : null }
+    const reroute = () => { counter == questions.length - 1 ? router.push("/define-criteria") : null }
 
     const questions = [
         {
@@ -49,11 +49,9 @@ const Home = () => {
     const handleClick = () => {
         if (textValue) {
             setAnswers([...answers, textValue])
-            setCounter(counter + 1)
-            console.log("textValue before", textValue)
-            setTextValue('')
-            console.log("textValue after", textValue)
             console.log("answer1,", answers)
+            setCounter(counter + 1)
+            setTextValue('')
             //localStorage.setItem("answers", JSON.stringify(textValue))
             //this is how you merge an array with your current array state using set...
             reroute()
@@ -94,7 +92,7 @@ const Home = () => {
                             </div>
                             <div>
                                 <form>
-                                    <input className='mr-48 rounded-full box-border h-10 w-9/12 p-4 bg-input-colour centre text-white ' type="text" size={100} onChange={handleChange} placeholder='answer here' required></input>
+                                    <input key={counter} className='mr-48 rounded-full box-border h-10 w-9/12 p-4 bg-input-colour centre text-white ' type="text" size={100} onChange={handleChange} placeholder='answer here' required></input>
                                     <button type="button" onClick={handleClick} className=' font-mono mt-2.5 text-primary-font bg-button p-1.5 rounded-lg bg-button hover:bg-gradient-to-r from-light-purple to-sea-green '>Next</button>
 
                                 </form>

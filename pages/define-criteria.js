@@ -93,7 +93,7 @@ export default function Home() {
                 <main className={styles.main}>
                     <div className='flex flex-col'>
                         <h1 className='text-white font-family:Outfit font-style: font-semibold text-indigo-900 capitalize text-6xl text-left pr-52'>
-                            List out the borad criteria you have for your college experience
+                            List out the broad criteria you have for your college experience
                         </h1>
                         <div>
                             <form>
