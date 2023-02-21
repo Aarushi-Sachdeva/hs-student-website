@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { NodeNextRequest } from 'next/dist/server/base-http/node'
+import Questions from '../questions.json'
 
 const Home = () => {
     const [textValue, setTextValue] = useState()
@@ -16,42 +17,19 @@ const Home = () => {
     const router = useRouter()
     const reroute = () => { counter == questions.length - 1 ? router.push("/define-criteria") : null }
 
-    const questions = [
-        {
-            question: "What size of school are you looking for?",
-            extraText: "Small (< 5000), Medium (> 5000 , < 15000), Big (> 15,000)",
-            inputType: "text"
-        },
-        {
-            question: "What type of extra curricular activities are you interested in?",
-            extraText: null,
-            inputType: "text"
-        },
-        {
-            question: "What kind of campus atmosphere are you looking for?",
-            extraText: null,
-            inputType: "text"
-        },
-        {
-            question: "What types of majors and classes are you interested in?",
-            extraText: null,
-            inputType: "text"
-        },
-        {
-            question: "What do you hope to gain from your college experience?",
-            extraText: null,
-            inputType: "text"
-        }]
-
+    const questions = Questions
+        
 
     //when the "Done" button is clicked split textValue and merge splitted to the current state of ColumnHeaders
     //then reroute
     const handleClick = () => {
         if (textValue) {
+            console.log(textValue)
             setAnswers([...answers, textValue])
-            console.log("answer1,", answers)
+            console.log(answers)
             setCounter(counter + 1)
             setTextValue('')
+
             //localStorage.setItem("answers", JSON.stringify(textValue))
             //this is how you merge an array with your current array state using set...
             reroute()
@@ -62,6 +40,46 @@ const Home = () => {
 
     }
 
+//     function getResponseFromOpenAI(){
+//         var myHeaders = new Headers();
+// myHeaders.append("Content-Type", "application/json");
+
+
+
+//         var raw = JSON.stringify({
+//         "prompt": answers
+//         });
+
+//         var requestOptions = {
+//         method: 'POST',
+//         headers: myHeaders,
+//         body: raw,
+//         redirect: 'follow'
+//         };
+
+//         fetch("/api", requestOptions)
+//         .then(response => response.text())
+//         .then(result => console.log(result))
+//         .catch(error => console.log('error', error));
+//     }
+
+    useEffect(() => {
+        console.log(answers.length)
+        if (answers.length) {
+            localStorage.setItem("questionAnswers", JSON.stringify(answers))
+        }
+    }
+        , [answers])
+    // useEffect(()=>{
+    //     let list = JSON.parse(localStorage.getItem("questionAnswers"))
+    //     console.log(typeof list)
+    //     if (list && list.length === questions.length){
+    //         const AIResponase = getResponseFromOpenAI()
+    //     }
+
+    // },[answers])
+
+    
     while (counter < questions.length) {
         return <div>
             <div className='bg-primary opacity-100'>

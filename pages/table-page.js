@@ -150,7 +150,7 @@ const Home = () => {
 
 
   return (
-    <div className='bg-deep-purple'>
+    <div className='bg-primary'>
       <div className={styles.container}>
         <div>
           <Head>
@@ -164,12 +164,12 @@ const Home = () => {
             <div className="container mx-auto">
               <button
                 onClick={() => onAddRowClick(columns)} //button click call the onAddRowClick function
-                className="bg-light-purple hover:bg-gradient-to-r from-light-purple to-sea-green text-white font-semibold py-1 px-1 rounded"
+                className="bg-button hover:bg-gradient-to-r from-light-purple to-sea-green text-white font-semibold py-1 px-1 rounded"
               >
                 Add Row
               </button>
               {
-                !isSSR && <div className="flex justify-center mt-8 font-family:Outfit font-semibold">
+                !isSSR && <div className="flex justify-center mt-8 font-family:Outfit font-semibold text-primary">
                   <Table columns={columns} data={rowdata} updateMyData={updateMyData} />
                 </div>
               }

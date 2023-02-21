@@ -1,0 +1,27 @@
+[
+  {
+    "question": "What size of school are you looking for?",
+    "extraText": "Small (< 5000), Medium (> 5000 , < 15000), Big (> 15,000)",
+    "inputType": "text"
+  },
+  {
+    "question": "What type of extra curricular activities are you interested in?",
+    "extraText": null,
+    "inputType": "text"
+  },
+  {
+    "question": "What kind of campus atmosphere are you looking for?",
+    "extraText": null,
+    "inputType": "text"
+  },
+  {
+    "question": "What types of majors and classes are you interested in?",
+    "extraText": null,
+    "inputType": "text"
+  },
+  {
+    "question": "What do you hope to gain from your college experience?",
+    "extraText": null,
+    "inputType": "text"
+  }
+]
