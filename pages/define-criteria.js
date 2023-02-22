@@ -135,6 +135,7 @@ export default function Home() {
     //then reroute
     const handleClick = () => {
         if (textValue) {
+            console.log("in here")
             const splitted = textValue.split(',')
             setcolumnHeaders([...columnHeaders, ...splitted])//this is how you merge an array with your current array state using set...
             reroute()
@@ -146,8 +147,10 @@ export default function Home() {
     }
 
     function handleKeyDown(e) {
+        
         console.log('User pressed: ', e.key)
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' || e.key === 'Return') {
+            e.preventDefault()
             handleClick()
         }
     }
@@ -175,9 +178,8 @@ export default function Home() {
                         </h1>
                         <div>
                             <form>
-                                <input className='mr-48 rounded-full box-border h-10 w-9/12 p-4 bg-input-colour centre text-white ' type="text" size={100} onChange={handleChange} placeholder='type a list of comma seperated words' required></input>
-                                <button type="button" onClick={handleClick} className=' font-mono mt-2.5 text-primary-font bg-button p-1.5 rounded-lg bg-button hover:bg-gradient-to-r from-light-purple to-sea-green '>go to table</button>
-
+                                <input className='mr-48 rounded-full box-border h-10 w-9/12 p-4 bg-input-colour centre text-white ' type="text" size={100} onChange={handleChange} onKeyDown={handleKeyDown} placeholder='type a list of comma seperated words' required></input>
+                                <button type="button" onClick={handleClick}  className=' font-mono mt-2.5 text-primary-font bg-button p-1.5 rounded-lg bg-button hover:bg-gradient-to-r from-light-purple to-sea-green '>go to table</button>                            
                             </form>
                         </div>
                     </div>

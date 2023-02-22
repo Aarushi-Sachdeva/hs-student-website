@@ -25,10 +25,12 @@ export default async function handler(
     req, res
 ) {
     console.log("hello i am in api")
+    //const tester = req.body.prompt
     const command = "summarise the responses to every question asked. Conversationally address your response to the student who has answered the questions.\n\n"
     const questions = Questions
     const answers = req.body.prompt
     //json.parse is converting the string into an array
+    console.log("right before i fail")
     const answersArray = JSON.parse(answers)
     console.log("these are the answers", answers)
     // '["small", "dance", "fun", "computer science", "fun"]'
@@ -41,8 +43,7 @@ export default async function handler(
         prompt= prompt + "Q: " + questions[i].question + " A: " + answersArray[i] + " \n"
     }
 
-    console.log("prompt", prompt)
-
+    console.log(prompt)
 
     const response1 = await openai.createCompletion({
         model: "text-davinci-003",

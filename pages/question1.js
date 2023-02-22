@@ -40,6 +40,15 @@ const Home = () => {
 
     }
 
+    function handleKeyDown(e) {
+        
+        console.log('User pressed: ', e.key)
+        if (e.key === 'Enter' || e.key === 'Return') {
+            e.preventDefault()
+            handleClick()
+        }
+    }
+
 //     function getResponseFromOpenAI(){
 //         var myHeaders = new Headers();
 // myHeaders.append("Content-Type", "application/json");
@@ -110,7 +119,7 @@ const Home = () => {
                             </div>
                             <div>
                                 <form>
-                                    <input key={counter} className='mr-48 rounded-full box-border h-10 w-9/12 p-4 bg-input-colour centre text-white ' type="text" size={100} onChange={handleChange} placeholder='answer here' required></input>
+                                    <input key={counter} onKeyDown={handleKeyDown} className='mr-48 rounded-full box-border h-10 w-9/12 p-4 bg-input-colour centre text-white ' type="text" size={100} onChange={handleChange} placeholder='answer here' required></input>
                                     <button type="button" onClick={handleClick} className=' font-mono mt-2.5 text-primary-font bg-button p-1.5 rounded-lg bg-button hover:bg-gradient-to-r from-light-purple to-sea-green '>Next</button>
 
                                 </form>
