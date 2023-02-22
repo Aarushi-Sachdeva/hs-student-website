@@ -11,6 +11,9 @@ const Home = () => {
     const [answers, setAnswers] = useState([])
     const [counter, setCounter] = useState(0)
 
+
+
+
     function handleChange(e) { //onChange event
         setTextValue(e.target.value) // extract the value from the target that triggered an event
     }
