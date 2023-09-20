@@ -121,7 +121,7 @@ export default function Home() {
             </h1>
             <div>
                 <form>
-                <input className='mr-48 rounded-full box-border h-10 w-9/12 p-4 bg-input-colour centre text-white ' type="text" size={100} onChange={handleChange} placeholder='type a list of comma seperated words' required></input>
+                <input className='mr-48 rounded-full box-border h-10 w-9/12 p-4 bg-input-colour centre text-white ' type="text" size={100} onChange={handleChange} placeholder='list of comma seperated criteria, eg. location, extra curricular, science program ... ' required></input>
                 <button type="button" onClick={handleClick} className=' font-mono mt-2.5 text-primary-font bg-button p-1.5 rounded-lg bg-button hover:bg-gradient-to-r from-light-purple to-sea-green '>go to table</button>
     
                 </form>
